@@ -20,8 +20,18 @@ This project aims to develop a trading model that utilizes a dynamic weighting a
 1. Clone the repository
 
 ```shell
-git clone https://github.com/Netanelshoshan/freqAI-LSTM.git
-```
+git clone https://github.com/freqtrade/freqtrade.git &&  cd freqtrade
+
+git checkout develop
+
+./setup.sh -i
+
+source ./.venv/bin/activate
+
+pip install -e .[all]
+
+pip install pyarrowgit clone https://github.com/Netanelshoshan/freqAI-LSTM.git && cd freqAI-LSTM
+
 2. Copy the files to the freqtrade directory
 
 ```shell 
@@ -44,39 +54,17 @@ def _validate_freqai_include_timeframes()
     if freqai_enabled:
         main_tf = conf.get('timeframe', '5m') -> change to '1h' or the **min** timeframe of your choosing
 ```
-5. Make sure your package is edible after the the changes
+5. Make sure your package is edible after the the changes #Don't do this
+   
 ```shell
 pip install -e .
 ```
 
 7. Run the backtest
 ```shell
-freqtrade backtesting -c user_data/config-torch.json --breakdown day week month --timerange 20240301-20240401 
+freqtrade backtesting -c user_data/config-torch.json --breakdown day week month --timerange  20240101-20251028
+
 ````
-
-## Quick Start with docker
-
-1. Clone the repository
-
-```shell
-git clone https://github.com/Netanelshoshan/freqAI-LSTM.git
-```
-2. Build local docker images
-
-```shell
-cd freqAI-LSTM
-docker build -f torch/Dockerfile  -t freqai .
-```
-3. Download data and Run the backtest
-```
-docker run -v ./data:/freqtrade/user_data/data  -it freqai  download-data -c user_data/config-torch.json --timerange 20230101-20240529 --timeframe 15m 30m 1h 2h 4h 8h 1d --erase
-
-docker run -v ./data:/freqtrade/user_data/data  -it freqai  backtesting -c user_data/config-torch.json --breakdown day week month --timerange 20240301-20240401 
-```
-
-
-
-
 ## Model Architecture
 
 The core of the model is a Long Short-Term Memory (LSTM) network, which is a type of recurrent neural network that excels at handling sequential data and capturing long-term dependencies.
