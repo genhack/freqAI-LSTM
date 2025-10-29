@@ -1,18 +1,18 @@
 {
-  "trading_mode": "futures",
+  "trading_mode": "spot",
   "margin_mode": "isolated",
   "max_open_trades": -1,
-  "stake_currency": "USDT",
-  "stake_amount": 2000,
+  "stake_currency": "USDC",
+  "stake_amount": 200,
   "tradable_balance_ratio": 0.99,
-  "fiat_display_currency": "USD",
+  "fiat_display_currency": "EUR",
   "dry_run": true,
   "strategy": "ExampleLSTMStrategy",
   "freqaimodel": "PyTorchLSTMRegressor",
   "dataformat_ohlcv": "json",
   "dataformat_trades": "jsongz",
   "cancel_open_orders_on_exit": false,
-  "dry_run_wallet": 8000,
+  "dry_run_wallet": 200,
   "unfilledtimeout": {
     "entry": 10,
     "exit": 30
@@ -46,16 +46,16 @@
       "rateLimit": 50
     },
     "pair_whitelist": [
-      "BTC/USDT:USDT",
-      "ETH/USDT:USDT",
-      "LTC/USDT:USDT",
-      "BNB/USDT:USDT",
-      "XRP/USDT:USDT",
-      "ADA/USDT:USDT",
-      "DOT/USDT:USDT",
-      "SOL/USDT:USDT",
-      "LINK/USDT:USDT",
-      "AVAX/USDT:USDT"
+      "BTC/USDC:USDC",
+      "ETH/USDC:USDC",
+      "LTC/USDC:USDC",
+      "BNB/USDC:USDC",
+      "XRP/USDC:USDC",
+      "ADA/USDC:USDC",
+      "DOT/USDC:USDC",
+      "SOL/USDC:USDC",
+      "LINK/USDC:USDC",
+      "AVAX/USDC:USDC"
     ],
     "pair_blacklist": []
   },
@@ -121,5 +121,19 @@
       }
     }
   },
-  //telegram and api
+  "api_server": {
+        "enabled": true,
+        "listen_ip_address": "127.0.0.1",
+        "listen_port": 8080,
+        "verbosity": "info",
+        "jwt_secret_key": "1234",
+        "CORS_origins": [],
+        "username": "gen",
+        "password": "1234"
+    },
+    "bot_name": "freqtrade",
+    "initial_state": "running",
+    "internals": {
+        "process_throttle_secs": 5
+    }
 }
