@@ -34,7 +34,7 @@ cp ExampleLSTMStrategy.py <freqtrade dir>/user_data/strategies/
 ```
 3. Download the data
 ```shell
-freqtrade download-data -c user_data/config-torch.json --timerange 20230101-20240529 --timeframe 15m 30m 1h 2h 4h 8h 1d --erase
+freqtrade download-data --exchange binance --pairs ".*/USDC" --timerange 20240101-20251028 --timeframe 15m 30m 1h 2h 4h 8h 1d --erase
 ```
 4. Edit "freqtrade/configuration/config_validation.py"
 ```python
