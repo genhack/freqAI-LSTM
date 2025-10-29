@@ -12,7 +12,7 @@
   "dataformat_ohlcv": "json",
   "dataformat_trades": "jsongz",
   "cancel_open_orders_on_exit": false,
-  "dry_run_wallet": 200,
+  "dry_run_wallet": 200000,
   "unfilledtimeout": {
     "entry": 10,
     "exit": 30
