@@ -31,6 +31,7 @@ source ./.venv/bin/activate
 pip install -e .[all]
 
 git clone https://github.com/Netanelshoshan/freqAI-LSTM.git && cd freqAI-LSTM
+```
 
 2. Copy the files to the freqtrade directory
 
