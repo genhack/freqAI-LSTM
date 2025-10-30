@@ -58,9 +58,9 @@ def _validate_freqai_include_timeframes()
         main_tf = conf.get('timeframe', '5m') -> change to '1h' or the **min** timeframe of your choosing
 ```
 
-6. Run the backtest
+6. Run the backtest -> Require 120d after for start.
 ```shell
-freqtrade backtesting -c user_data/config-torch.json --breakdown day week month --timerange  20240101-20251028
+freqtrade backtesting -c user_data/config-torch.json --breakdown day week month --timerange  20240505-20251028
 
 ````
 ## Model Architecture
