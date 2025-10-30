@@ -30,17 +30,19 @@ source ./.venv/bin/activate
 
 pip install -e .[all]
 
-pip install pyarrowgit clone https://github.com/Netanelshoshan/freqAI-LSTM.git && cd freqAI-LSTM
+git clone https://github.com/Netanelshoshan/freqAI-LSTM.git && cd freqAI-LSTM
 
 2. Copy the files to the freqtrade directory
 
 ```shell 
-cp torch/BasePyTorchModel.py <freqtrade dir>/freqtrade/freqai/base_models/
-cp torch/PyTorchLSTMModel.py <freqtrade dir >/freqtrade/freqai/torch/
-cp torch/PyTorchModelTrainer.py <freqtrade dir>/freqtrade/freqai/torch/
-cp torch/PyTorchLSTMRegressor.py <freqtrade dir>/user_data/freqaimodels/
-cp config-example.json <freqtrade dir>/user_data/config.json
-cp ExampleLSTMStrategy.py <freqtrade dir>/user_data/strategies/
+bash -c 'BRANCH=main; BASE="https://raw.githubusercontent.com/genhack/freqAI-LSTM/$BRANCH"; \
+mkdir -p freqtrade/freqai/base_models freqtrade/freqai/torch user_data/freqaimodels user_data/strategies && \
+curl -fsSL "$BASE/torch/BasePyTorchModel.py"      -o freqtrade/freqai/base_models/BasePyTorchModel.py && \
+curl -fsSL "$BASE/torch/PyTorchLSTMModel.py"      -o freqtrade/freqai/torch/PyTorchLSTMModel.py && \
+curl -fsSL "$BASE/torch/PyTorchModelTrainer.py"   -o freqtrade/freqai/torch/PyTorchModelTrainer.py && \
+curl -fsSL "$BASE/torch/PyTorchLSTMRegressor.py"  -o user_data/freqaimodels/PyTorchLSTMRegressor.py && \
+curl -fsSL "$BASE/config-example.json"            -o user_data/config.json && \
+curl -fsSL "$BASE/ExampleLSTMStrategy.py"         -o user_data/strategies/ExampleLSTMStrategy.py'
 ```
 3. Download the data
 ```shell
@@ -54,13 +56,8 @@ def _validate_freqai_include_timeframes()
     if freqai_enabled:
         main_tf = conf.get('timeframe', '5m') -> change to '1h' or the **min** timeframe of your choosing
 ```
-5. Make sure your package is edible after the the changes #Don't do this
-   
-```shell
-pip install -e .
-```
 
-7. Run the backtest
+6. Run the backtest
 ```shell
 freqtrade backtesting -c user_data/config-torch.json --breakdown day week month --timerange  20240101-20251028
 
