@@ -47,13 +47,13 @@ curl -fsSL "$BASE/ExampleLSTMStrategy.py"         -o user_data/strategies/Exampl
 ```
 3. Pytorch 2.6
 ```shell
-Add the following parameter:
+Add the following parameter weights_only=False:
 freqtrade/freqai/torch/PyTorchTrainerInterface.py:
-checkpoint = torch.load(path) -> weights_only=False
+checkpoint = torch.load(path, weights_only=False)
 freqtrade/freqai/torch/PyTorchModelTrainer.py:
-checkpoint = torch.load(path) -> weights_only=False
+checkpoint = torch.load(path, weights_only=False)
 freqtrade/freqai/data_drawer.py:
-zipfile = torch.load(dk.data_path / f"{dk.model_filename}_model.zip") -> weights_only=False
+zipfile = torch.load(dk.data_path / f"{dk.model_filename}_model.zip", weights_only=False) 
 ```
 4. Download the data
 ```shell
